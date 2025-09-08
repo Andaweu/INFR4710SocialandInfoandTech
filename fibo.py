@@ -1,23 +1,3 @@
-'''
-def fib1(n):
-    fibValue = 0
-    result = []
-    if n == 0:
-        pass
-    elif n == 1:
-        result.append(0)
-    for i in range(n):
-        result.append(fibValue)
-        fibValue += 
-
-        
-    # We will print our results here
-    pass
-
-def fib2(n):
-    result = [] 
-    return result
-'''
 
 def fib1(n):
     if n == 0:
@@ -38,6 +18,8 @@ def fib1(n):
             print(newValue)
             secondLastValue = LastValue
             LastValue = newValue
+
+    #print results here
 
     pass
 
