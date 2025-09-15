@@ -12,24 +12,23 @@ def BFS(graph, root):
     #Your code here
 
 
-    visitedNodes = set()
-    queue = Queue()
-    queue.push(root)
-    sequence = []
-    spanningTree = nx.Graph()
+    visitedNodes = set() #creates a set for visited nodes
+    queue = Queue() #creates a queue from the class my_queue.py
+    sequence = [] #list to store the sequence of the nodes
+    spanningTree = nx.Graph() 
 
-    queue.push(root)
-    visitedNodes.add(root)
-    while not queue.is_empty():
-        pointer = queue.pop()
-        sequence.append(pointer)
+    queue.push(root) #sets the root node as the first value in queue
+    visitedNodes.add(root) #adds the root node to visited node
+    while not queue.is_empty(): #runs until the queue is empty
+        pointer = queue.pop() #pops the first item in the queue and points to it
+        sequence.append(pointer) #adds the pointed item to the sequence of visited nodes
         
         for i in graph.neighbors(pointer):
-            if i not in visitedNodes:
-                visitedNodes.add(i)
-                queue.push(i)
-                spanningTree.add_edge(pointer, i)
-    return spanningTree, sequence
+            if i not in visitedNodes: #for a node not in previously visited node
+                visitedNodes.add(i) #mark the node as visited
+                queue.push(i) #pushes the current node to the queue
+                spanningTree.add_edge(pointer, i) #adds an edge to the graph for the pointers location
+    return spanningTree, sequence #returns the graph and the BFS sequence
 
 
     
@@ -43,24 +42,23 @@ def DFS(graph, root):
     """
     #Your code here
 
-    visitedNode = set()
-    stack = Stack()
-    sequence = []
+    visitedNode = set() #creates a set for visited nodes
+    stack = Stack() #creates a stack from the class my_stack.py
+    sequence = [] #list to store the sequence of the nodes
     spanningTree = nx.Graph()
 
-    stack.push(root)
-    visitedNode.add(root)
+    stack.push(root) #sets the root as the first value in the stack
+    visitedNode.add(root) #marks the root as the first node visited
+    while not stack.is_empty(): #runs while the stack is not empty
+        pointer = stack.pop() #pops the last item in the stack and points to it
+        sequence.append(pointer) #appends the pointer to the sequence of nodes
 
-    while not stack.is_empty():
-        pointer = stack.pop()
-        sequence.append(pointer)
-
-        for i in reversed(list(graph.neighbors(pointer))):
-            if i not in visitedNode:
-                visitedNode.add(i)
-                stack.push(i)
-                spanningTree.add_edge(pointer, i)
-    return spanningTree, sequence
+        for i in reversed(list(graph.neighbors(pointer))): #because a stack is used (LIFO) the list is reversed
+            if i not in visitedNode: #if the node has not been visited yet
+                visitedNode.add(i) #marks the current node as visited
+                stack.push(i) #pushes the current node to the stack
+                spanningTree.add_edge(pointer, i) #adds an edge to the graph for the current location
+    return spanningTree, sequence #returns the graph and the DFS sequence
 
 def show_graph(graph):
     plt.subplot(111)
