@@ -10,23 +10,27 @@ def BFS(graph, root):
 	and the sequence of nodes are visited.
     """
     #Your code here
-    while graph is True:
-        vertices = len(graph)
-        path = []
-        s = 0
-        BFSqueue = []
-        visitedNodes = vertices * [False]
-        visitedNodes[s] = True
 
-        while graph is True:
-            currentValue = Stack.pop()
-            path.append(currentValue)
 
-            for i in graph[currentValue]:
-                if not visitedNodes[i]:
-                    visitedNodes[i] = True
-                    BFSqueue.append(i)
-    return path
+    visitedNodes = set()
+    queue = Queue()
+    queue.push(root)
+    sequence = []
+    spanningTree = nx.Graph()
+
+    queue.push(root)
+    visitedNodes.add(root)
+    while not queue.is_empty():
+        pointer = queue.pop()
+        sequence.append(pointer)
+        
+        for i in graph.neighbors(pointer):
+            if i not in visitedNodes:
+                visitedNodes.add(i)
+                queue.push(i)
+                spanningTree.add_edge(pointer, i)
+    return spanningTree, sequence
+
 
     
 
@@ -38,6 +42,25 @@ def DFS(graph, root):
 	original graph, the sequence of visited nodes.
     """
     #Your code here
+
+    visitedNode = set()
+    stack = Stack()
+    sequence = []
+    spanningTree = nx.Graph()
+
+    stack.push(root)
+    visitedNode.add(root)
+
+    while not stack.is_empty():
+        pointer = stack.pop()
+        sequence.append(pointer)
+
+        for i in reversed(list(graph.neighbors(pointer))):
+            if i not in visitedNode:
+                visitedNode.add(i)
+                stack.push(i)
+                spanningTree.add_edge(pointer, i)
+    return spanningTree, sequence
 
 def show_graph(graph):
     plt.subplot(111)
@@ -52,7 +75,7 @@ def create_tree():
         g.add_edge(source, i+1)
     return g
 
-'''
+
 graph = nx.erdos_renyi_graph(12, 0.25, seed=42)
 
 show_graph(graph)
@@ -71,9 +94,5 @@ DFSspan, DFSseq = DFS(graph, 0)
 print ("BFS Seguence: ", BFSseq)
 print ("DFS Seguence: ", DFSseq)
 show_graph(graph)
-'''
 
-graph = [[1,2], [0,2,3], [0,4], [1,4], [2,3]]
-ans = BFS(graph)
-for i in ans:
-    print(i, end=" ")
+
