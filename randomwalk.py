@@ -11,23 +11,23 @@ def RandomWalkDest(graph, root, dest):
     """
     #Your code here
 
-    pointer = root
-    path = [pointer]
-    visitedNodes = []
+    pointer = root #set the pointer to the root position
+    path = [pointer] #start the path at the pointer
+    visitedNodes = [] #create a list for nodes visited
 
-    while pointer != dest:
-        adjacent = list(graph.neighbors(pointer))
-        if not adjacent:
+    while pointer != dest: #run while not at destination node
+        adjacent = list(graph.neighbors(pointer)) #create a list of neighboring nodes to the pointer
+        if not adjacent: #if no adjacent nodes, break the code
             break
 
-        nextNode = random.choice(adjacent)
-        visitedNodes.append((pointer, nextNode))
-        pointer = nextNode
-        path.append(pointer)
+        nextNode = random.choice(adjacent) #chose a random adjacent node
+        visitedNodes.append((pointer, nextNode)) #collect the next node and where it came from
+        pointer = nextNode #move the pointer to the next node
+        path.append(pointer) #append the new pointer to the path
 
     
     subgraph = nx.Graph()
-    subgraph.add_edges_from(visitedNodes)
+    subgraph.add_edges_from(visitedNodes) #add the pathways from visitedNodes to the graph
 
     return subgraph, path
 
@@ -42,22 +42,22 @@ def RandomWalkHops(graph, root, hops):
     """
     #Your code here
 
-    pointer = root
-    path = [pointer]
-    visitedNodes = []
+    pointer = root #set the pointer to the root position
+    path = [pointer] #start the path at the pointer
+    visitedNodes = [] #create a list for nodes visited
 
-    for i in range(hops):
-        adjacent = list(graph.neighbors(pointer))
-        if not adjacent:
+    for i in range(hops): #runs until travelled the desired number of hops
+        adjacent = list(graph.neighbors(pointer)) #create a list of neighboring nodes to the pointer
+        if not adjacent: #if no adjacent nodes, break the code
             break
-        nextNode = random.choice(adjacent)
-        visitedNodes.append((pointer, nextNode))
-        pointer = nextNode
-        path.append(pointer)
+        nextNode = random.choice(adjacent) #chose a random adjacent node
+        visitedNodes.append((pointer, nextNode)) #collect the next node and where it came from
+        pointer = nextNode #move the pointer to the next node
+        path.append(pointer) #append the new pointer to the path
 
     
     subgraph = nx.Graph()
-    subgraph.add_edges_from(visitedNodes)
+    subgraph.add_edges_from(visitedNodes) #add the pathways from visitedNodes to the graph
 
 
     return subgraph, path
