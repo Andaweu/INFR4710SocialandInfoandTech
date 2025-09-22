@@ -46,7 +46,7 @@ def RandomWalkHops(graph, root, hops):
     path = [pointer] #start the path at the pointer
     visitedNodes = [] #create a list for nodes visited
 
-    for i in range(hops): #runs until travelled the desired number of hops
+    for i in range(hops): #runs until travelled the entire graph
         adjacent = list(graph.neighbors(pointer)) #create a list of neighboring nodes to the pointer
         if not adjacent: #if no adjacent nodes, break the code
             break
@@ -77,10 +77,10 @@ plt.subplot(111)
 nx.draw(RandomGraph, with_labels=True, font_weight='bold')
 print("Random Walk Sequence: ", RandomSeq)
 plt.show()
-'''
+
+
 RandomGraph, RandomSeq = RandomWalkHops(graph, 0, 20)
 plt.subplot(111)
 nx.draw(RandomGraph, with_labels=True, font_weight='bold')
 print("Random Walk Sequence: ", RandomSeq)
 plt.show()
-'''
