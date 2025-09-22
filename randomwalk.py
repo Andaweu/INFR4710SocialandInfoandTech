@@ -77,9 +77,10 @@ plt.subplot(111)
 nx.draw(RandomGraph, with_labels=True, font_weight='bold')
 print("Random Walk Sequence: ", RandomSeq)
 plt.show()
-   
+'''
 RandomGraph, RandomSeq = RandomWalkHops(graph, 0, 20)
 plt.subplot(111)
 nx.draw(RandomGraph, with_labels=True, font_weight='bold')
 print("Random Walk Sequence: ", RandomSeq)
 plt.show()
+'''
